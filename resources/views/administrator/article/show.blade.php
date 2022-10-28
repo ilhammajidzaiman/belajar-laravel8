@@ -4,8 +4,8 @@
     <i class="fa-fw fas fa-arrow-left"></i>
     kembali
 </a>
-<p>{{ $article->created_at }}</p>
 <h3>{{ $article->title }}</h3>
+<p>{{ $article->created_at }}</p>
 <img src="{{ asset('storage/'.$article->file) }}" alt="{{ asset('storage/'.$article->file) }}" class="img-fluid">
 <p>{{ $article->truncated }}</p>
 <div>{!! $article->content !!}</div>

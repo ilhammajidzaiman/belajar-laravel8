@@ -7,7 +7,7 @@
     <title>{{ $title }}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/images/imz-icon.svg' )}}">
     <link rel="stylesheet" href="{{ url('/')}}/plugin/fontawesome5/css/all.css">
-    <link rel="stylesheet" href="{{ url('/')}}/plugin/bootstrap5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url('/')}}/plugin/bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url('/') }}/plugin/summernote-0.8.18-dist/summernote-lite.min.css">
 
 </head>
