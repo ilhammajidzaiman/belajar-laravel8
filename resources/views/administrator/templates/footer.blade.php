@@ -45,6 +45,8 @@
 <script src="{{ url('/') }}/plugin/js/jquery-3.4.1.slim.min.js"></script>
 <script src="{{ url('/') }}/plugin/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ url('/') }}/plugin/summernote-0.8.18-dist/summernote-lite.min.js"></script>
+
+<script src="https://getbootstrap.com/docs/5.1/examples/offcanvas-navbar/offcanvas.js"></script>
 <script>
     $('#summernote').summernote({
         // placeholder: 'tulis artikel disini',
