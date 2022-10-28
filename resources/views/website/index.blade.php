@@ -22,8 +22,27 @@
                 <p>{{ $article->truncated }}</p>
             </div>
         </div>
-
     </div>
     @endforeach
 </div>
+
+<section class="mt-5 p t-5">
+    @foreach($articles as $article)
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-3">
+            <a class="" href="{{ url('/'.$controller.'/'.$article->slug) }}">
+                <img src="{{ url('assets/articles/default.svg' )}}" alt="" class="img-fluid rounded">
+            </a>
+        </div>
+        <div class="col-md-6">
+            <h5>
+                <a class="" href="{{ url('/'.$controller.'/'.$article->slug) }}">
+                    {{ $article->title }}
+                </a>
+            </h5>
+            <p>{{ $article->truncated }}</p>
+        </div>
+    </div>
+    @endforeach
+</section>
 @endsection

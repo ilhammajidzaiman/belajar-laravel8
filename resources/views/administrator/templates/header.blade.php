@@ -32,11 +32,11 @@
 
             <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
                 <div class="navbar-nav me-auto">
-                    <a class="nav-item nav-link {{ Request::is('category')?'text-primary':'' }}"
+                    <a class="nav-item nav-link {{ Request::is('category*')?'text-primary':'' }}"
                         href="{{url('/category')}}">
                         kategori
                     </a>
-                    <a class="nav-item nav-link {{ Request::is('article')?'text-primary':'' }}"
+                    <a class="nav-item nav-link {{ Request::is('article*')?'text-primary':'' }}"
                         href="{{url('/article')}}">
                         artikel
                     </a>
