@@ -56,7 +56,7 @@ $alert =session('alert')
                             @method('delete')
                             @csrf
                             <button class="badge rounded-pill btn btn-danger"
-                                onclick="return confirm('Hapus data: {{ $article->category }} ?');">
+                                onclick="return confirm('Hapus data: {{ $article->title }} ?');">
                                 <i class="fa-fw fas fa-trash"></i>
                                 hapus
                             </button>

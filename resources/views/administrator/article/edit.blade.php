@@ -5,7 +5,7 @@
     kembali
 </a>
 
-<form action="{{ url('/'.$controller.'/'.$article->slug) }}" method="post">
+<form action="{{ url('/'.$controller.'/'.$article->slug) }}" method="post" enctype="multipart/form-data">
     @method('put')
     @csrf
     <div class="row">
@@ -25,8 +25,9 @@
 
         <div class="col-md-3">
 
-            <img src="{{url('assets/articles/default.svg')}}" alt=" default.svg"
+            <img src="{{ asset('storage/'.$article->file) }}" alt="{{ asset('storage/'.$article->file) }}"
                 class="img-fluid rounded w-100 mb-3 img-preview">
+
             <div class=" mb-3">
                 <label for="file" class="form-label">thumbnail</label>
                 <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror"

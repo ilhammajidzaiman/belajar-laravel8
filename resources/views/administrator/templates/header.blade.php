@@ -21,7 +21,7 @@
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white shadow fw-light" aria-label="Main navigation">
         <div class="container-xxl text-capitalize">
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="{{ url('/'.$controller) }}">
                 <img src="{{ url('assets/images/imz-icon.svg')}}" alt="logo" height="30"
                     class="d-inline-blockk align-text-top">
             </a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ArticleController extends Controller
@@ -59,10 +60,11 @@ class ArticleController extends Controller
         $truncated          = Str::limit(strip_tags($content), 200, '...');
         $file               = $request->file('file');
         $folder             = 'articles';
+        $default            = 'default.svg';
 
         // validation
         $validatedData = $request->validate([
-            'title'         => ['required', 'max:255', 'unique:tbl_articles'],
+            'title'         => ['required', 'max:250', 'unique:tbl_articles'],
             'content'       => ['required'],
             'file'          => ['file', 'image', 'mimes:jpeg,jpg,png,svg', 'max:11024'],
         ]);
@@ -76,7 +78,7 @@ class ArticleController extends Controller
         // $fileName       = $date . '-' . $name;
         // $file           = $file->storeAs($folder, $fileName);
         else :
-            $file           = 'default.svg';
+            $file           = $folder . '/' . $default;
         endif;
 
         // insert
@@ -145,6 +147,7 @@ class ArticleController extends Controller
         $id                 = $article->slug;
         $oldFile            = $article->file;
         $oldSlug            = $article->slug;
+        $oldFile            = $article->file;
 
         // input
         $idUser             = 1;
@@ -154,6 +157,7 @@ class ArticleController extends Controller
         $truncated          = Str::limit(strip_tags($content), 200, '...');
         $file               = $request->file('file');
         $folder             = 'articles';
+        $default            = 'default.svg';
 
         // validation
         if ($oldSlug !== $slug) :
@@ -163,13 +167,15 @@ class ArticleController extends Controller
         endif;
 
         $validatedData = $request->validate([
-            'title'         => ['required', 'max:255', $unique],
+            'title'         => ['required', 'max:250', $unique],
             'content'       => ['required'],
             'file'          => ['file', 'image', 'mimes:jpeg,jpg,png,svg', 'max:11024'],
         ]);
 
         // upload
         if ($file) :
+            if ($oldFile !== $folder . '/' . $default)
+                Storage::delete($oldFile);
             $file = $file->store($folder);
         // 
         // $name           = $file->hashName();
@@ -177,7 +183,7 @@ class ArticleController extends Controller
         // $fileName       = $date . '-' . $name;
         // $file           = $file->storeAs($folder, $fileName);
         else :
-            $file           = 'default.svg';
+            $file           = $oldFile;
         endif;
 
         // Article::create([
@@ -205,6 +211,19 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        // detail
+        $id                 = $article->id;
+        $oldFile            = $article->file;
+
+        if ($oldFile !== 'article/default.svg') :
+            Storage::delete($oldFile);
+        endif;
+
+        Article::destroy($id);
+
+        return redirect('/article')->with([
+            'message'       => 'data dihapus!',
+            'alert'         => 'danger'
+        ]);
     }
 }
