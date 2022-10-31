@@ -41,17 +41,19 @@
     </footer>
 </div>
 
-{{-- <script src="{{ url('/') }}/assets/js/script.js"></script> --}}
+{{-- offline --}}
+<script src="{{ url('/') }}/assets/js/image-preview.js"></script>
+<script src="{{ url('/') }}/assets/js/offcanvas.js"></script>
 {{-- <script src="{{ url('/') }}/plugin/js/jquery-3.4.1.slim.min.js"></script> --}}
 {{-- <script src="{{ url('/') }}/plugin/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script> --}}
 {{-- <script src="{{ url('/') }}/plugin/summernote-0.8.18-dist/summernote-lite.min.js"></script> --}}
 
-<script src="https://getbootstrap.com/docs/5.1/examples/offcanvas-navbar/offcanvas.js"></script>
 
-
+{{-- online --}}
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{{-- <script src="https://getbootstrap.com/docs/5.1/examples/offcanvas-navbar/offcanvas.js"></script> --}}
 
 
 <script>

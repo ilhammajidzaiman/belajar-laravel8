@@ -5,7 +5,7 @@
     kembali
 </a>
 
-<form action="{{ url('/'.$controller.'/'.$article->slug) }}" method="post" class="text-capitalize">
+<form action="{{ url('/'.$controller.'/'.$article->slug) }}" method="post">
     @method('put')
     @csrf
     <div class="row">
@@ -28,9 +28,10 @@
             <img src="{{url('assets/articles/default.svg')}}" alt=" default.svg"
                 class="img-fluid rounded w-100 mb-3 img-preview">
             <div class=" mb-3">
-                <label for="image" class="form-label">Sampul artikel</label>
-                <input type="file" name="image" id="image" class="form-control" onchange="previewImg()"
-                    accept=".jpg,.jpeg,.png">
+                <label for="file" class="form-label">thumbnail</label>
+                <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror"
+                    onchange="previewImg()" accept=".jpg,.jpeg,.png">
+                @error('file')<div class="invalid-feedback">{{$message}}</div>@enderror
             </div>
 
             <div class="form-floating mb-3">
