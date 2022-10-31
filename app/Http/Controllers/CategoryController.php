@@ -48,21 +48,21 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         // input
-        $category_      = $request->category;
-        $slug_          = Str::slug($category_, '-');
+        $category       = $request->category;
+        $slug           = Str::slug($category, '-');
         // validation
         $validatedData = $request->validate([
-            'category'      => ['required', 'max:255', 'unique:tbl_categorys']
+            'category'      => ['required', 'max:250', 'unique:tbl_categorys']
         ]);
         // 
         Category::create([
-            'category'      => $category_,
-            'slug'          => $slug_
+            'category'      => $category,
+            'slug'          => $slug
         ]);
         // 
         return redirect('/category')->with([
-            'message' => 'data ditambahkan!',
-            'alert' => 'primary'
+            'message'       => 'data ditambahkan!',
+            'alert'         => 'primary'
         ]);
     }
 
@@ -111,30 +111,34 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        // input
+        // detail
         $id             = $category->slug;
-        $category_      = $request->category;
-        $slug_          = Str::slug($category_, '-');
+        $oldSlug        = $category->slug;
+
+        // input
+        $category       = $request->category;
+        $slug           = Str::slug($category, '-');
+
         // validation
-        if ($slug_ != $category->slug) :
+        if ($slug != $oldSlug) :
             $uniqueSlug = '|unique:tbl_categorys';
         else :
             $uniqueSlug = '';
         endif;
-        // 
+
         $validatedData = $request->validate([
-            'category'      => 'required|max:255' . $uniqueSlug
+            'category'      => 'required|max:250' . $uniqueSlug
         ]);
-        // 
+
         Category::where('slug', $id)
             ->update([
-                'category'      => $category_,
-                'slug'          => $slug_
+                'category'      => $category,
+                'slug'          => $slug
             ]);
         // 
         return redirect('/category')->with([
-            'message' => 'data diubah!',
-            'alert' => 'success'
+            'message'           => 'data diubah!',
+            'alert'             => 'success'
         ]);
     }
 
@@ -146,11 +150,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $id = $category->slug;
+        $id             = $category->id;
         Category::destroy($id);
         return redirect('/category')->with([
-            'message' => 'data dihapus!',
-            'alert' => 'danger'
+            'message'       => 'data dihapus!',
+            'alert'         => 'danger'
         ]);
     }
 }
