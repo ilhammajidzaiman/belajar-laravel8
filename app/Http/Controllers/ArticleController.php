@@ -141,7 +141,12 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        // detail
         $id                 = $article->slug;
+        $oldFile            = $article->file;
+        $oldSlug            = $article->slug;
+
+        // input
         $idUser             = 1;
         $title              = $request->title;
         $slug               = Str::slug($title, '-') . '.html';
@@ -150,11 +155,15 @@ class ArticleController extends Controller
         $file               = $request->file('file');
         $folder             = 'articles';
 
-        $fileLama = $article->file;
-        ddd($fileLama);
         // validation
+        if ($oldSlug !== $slug) :
+            $unique         = "unique:tbl_articles";
+        else :
+            $unique         = "";
+        endif;
+
         $validatedData = $request->validate([
-            'title'         => ['required', 'max:255', 'unique:tbl_articles'],
+            'title'         => ['required', 'max:255', $unique],
             'content'       => ['required'],
             'file'          => ['file', 'image', 'mimes:jpeg,jpg,png,svg', 'max:11024'],
         ]);
