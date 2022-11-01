@@ -55,7 +55,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-                // input
+        // input
         $idUser             = 1;
         $title              = $request->title;
         $slug               = Str::slug($title, '-') . '.html';
@@ -87,35 +87,32 @@ class ArticleController extends Controller
         endif;
 
         // insert
-        // $data= [
-        //     'id_user'       => $idUser,
-        //     'title'         => $title,
-        //     'slug'          => $slug,
-        //     'content'       => $content,
-        //     'truncated'     => $truncated,
-        //     'file'          => $file,
-        // ];
-        // Article::create($data);
-        // $data2=[];
+        $data = [
+            'id_user'       => $idUser,
+            'title'         => $title,
+            'slug'          => $slug,
+            'content'       => $content,
+            'truncated'     => $truncated,
+            'file'          => $file,
+        ];
+        Article::create($data);
+
+        // detail
+        // $detail = Article::where('slug', $slug)->get();
+        $detail = Article::where('slug', $slug)->first();
+        $oldId = $detail->id;
+
+        // insert
+        $data2 = [];
         foreach ($category as $key) :
-        $data2[] = 
-            [
-                'id_posting' => $key,
-                'id_category' => $key,
-            ];
+            $data2[] =
+                [
+                    'id_posting' => $oldId,
+                    'id_category' => $key,
+                ];
         endforeach;
+        Posting::insert($data2);
 
-        // $data2 = [
-        //     ['id_posting' => 'posting1', 'id_ketegori' => 'kategori1'],
-        //     ['id_posting' => 'posting2', 'id_ketegori' => 'kategori2'],
-        // ];
-
-      
-
-// dd($data2);
-
-    Posting::insert($data2);
-        
         // 
         return redirect('/article')->with([
             'message'       => 'data ditambahkan!',
@@ -168,12 +165,6 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        // detail
-        $id                 = $article->slug;
-        $oldFile            = $article->file;
-        $oldSlug            = $article->slug;
-        $oldFile            = $article->file;
-
         // input
         $idUser             = 1;
         $title              = $request->title;
@@ -183,6 +174,12 @@ class ArticleController extends Controller
         $file               = $request->file('file');
         $folder             = 'articles';
         $default            = 'default.svg';
+
+        // detail
+        $id                 = $article->slug;
+        $oldFile            = $article->file;
+        $oldSlug            = $article->slug;
+        $oldFile            = $article->file;
 
         // validation
         if ($oldSlug !== $slug) :
@@ -221,7 +218,8 @@ class ArticleController extends Controller
                 'truncated'     => $truncated,
                 'file'          => $file
             ]);
-        // 
+
+        // flashdata
         return redirect('/article')->with([
             'message'       => 'data diubah!',
             'alert'         => 'success'

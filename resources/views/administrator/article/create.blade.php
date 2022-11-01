@@ -10,25 +10,20 @@
     <div class="row">
         <div class="col-md-9 mb-3">
             <div class="form-floating mb-3">
-                <input type="text" name="title" id="title" placeholder="" value="{{ old('title') }}"
-                    class="form-control @error('title') is-invalid @enderror" autofocus>
+                <input type="text" name="title" id="title" placeholder="" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror" autofocus>
                 <label for="title">judul</label>
                 @error('title')<div class="invalid-feedback">{{$message}}</div>@enderror
             </div>
-
-            <textarea name="content" id="summernote" cols="30" rows="10"
-                class="@error('content') is-invalid @enderror">{{ old('content') }}</textarea>
+            <textarea name="content" id="summernote" cols="30" rows="10" class="@error('content') is-invalid @enderror">{{ old('content') }}</textarea>
             @error('content')<div class="invalid-feedback">{{$message}}</div>@enderror
         </div>
 
         <div class="col-md-3">
-            <img src="{{url('assets/articles/default.svg')}}" alt=" default.svg"
-                class="img-fluid rounded w-100 mb-3 img-preview">
+            <img src="{{url('assets/articles/default.svg')}}" alt=" default.svg" class="img-fluid rounded w-100 mb-3 img-preview">
 
             <div class=" mb-3">
                 <label for="file" class="form-label">thumbnail</label>
-                <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror"
-                    onchange="previewImg()" accept=".jpg,.jpeg,.png">
+                <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror" onchange="previewImg()" accept=".jpg,.jpeg,.png">
                 @error('file')<div class="invalid-feedback">{{$message}}</div>@enderror
             </div>
 
@@ -37,8 +32,7 @@
                     <p>kategori</p>
                     @foreach ($categories as $category)
                     <div class="form-check">
-                        <input type="checkbox" name="category[]" id="category{{ $category->id }}"
-                            value="{{ $category->id }}" class="form-check-input">
+                        <input type="checkbox" name="category[]" id="category{{ $category->id }}" value="{{ $category->id }}" class="form-check-input">
                         <label for="category{{ $category->id }}">{{ $category->category }}</label>
                     </div>
                     @endforeach
@@ -47,7 +41,7 @@
             </div>
 
             {{-- <input type="checkbox" name="catregory[]" id="category{{ $category->id }}" value="{{ $category->id }}"
-                class="form-check-input" @if (in_array({{ $category->id}},('category',[])) ) checked @endif> --}}
+            class="form-check-input" @if (in_array({{ $category->id}},('category',[])) ) checked @endif> --}}
 
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input" type="checkbox" id="publish" checked>

@@ -10,8 +10,7 @@
         <i class="fa-fw fas fa-plus"></i>
         baru
     </a>
-    <input type="text" class="rounded-pill form-control border-secondary mx-3" placeholder="Recipient's username"
-        aria-label="Recipient's username" aria-describedby="button-addon2">
+    <input type="text" class="rounded-pill form-control border-secondary mx-3" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
     <button class="rounded-pill btn btn-outline-secondary" type="button" id="button-addon2">
         <i class="fa-fw fas fa-search"></i>
         cari
@@ -55,21 +54,18 @@ $alert =session('alert')
                 </td>
                 <td>
                     <span class="float-end text-capitalize">
-                        <a class="badge rounded-pill btn btn-primary"
-                            href="{{ url('/'.$controller.'/'.$article->slug) }}">
+                        <a class="badge rounded-pill btn btn-primary" href="{{ url('/'.$controller.'/'.$article->slug) }}">
                             <i class="fa-fw fas fa-eye"></i>
                             lihat
                         </a>
-                        <a class="badge rounded-pill btn btn-success"
-                            href="{{ url('/'.$controller.'/'.$article->slug.'/edit') }}">
+                        <a class="badge rounded-pill btn btn-success" href="{{ url('/'.$controller.'/'.$article->slug.'/edit') }}">
                             <i class="fa-fw fas fa-edit"></i>
                             edit
                         </a>
                         <form action="{{ url('/'.$controller.'/'.$article->slug) }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
-                            <button class="badge rounded-pill btn btn-danger"
-                                onclick="return confirm('Hapus data: {{ $article->title }} ?');">
+                            <button class="badge rounded-pill btn btn-danger" onclick="return confirm('Hapus data: {{ $article->title }} ?');">
                                 <i class="fa-fw fas fa-trash"></i>
                                 hapus
                             </button>

@@ -11,27 +11,23 @@
     <div class="row">
         <div class="col-md-9 mb-3">
             <div class="form-floating mb-3">
-                <input type="text" name="title" id="title" placeholder="" value="{{ old('title',$article->title) }}"
-                    class="form-control @error('title') is-invalid @enderror" autofocus>
+                <input type="text" name="title" id="title" placeholder="" value="{{ old('title',$article->title) }}" class="form-control @error('title') is-invalid @enderror" autofocus>
                 <label for="title">judul</label>
                 @error('title')<div class="invalid-feedback">{{$message}}</div>@enderror
             </div>
 
-            <textarea name="content" id="summernote" cols="30" rows="10"
-                class="@error('content') is-invalid @enderror">{{ old('content',$article->content) }}</textarea>
+            <textarea name="content" id="summernote" cols="30" rows="10" class="@error('content') is-invalid @enderror">{{ old('content',$article->content) }}</textarea>
             @error('content')<div class="invalid-feedback">{{$message}}</div>@enderror
 
         </div>
 
         <div class="col-md-3">
 
-            <img src="{{ asset('storage/'.$article->file) }}" alt="{{ asset('storage/'.$article->file) }}"
-                class="img-fluid rounded w-100 mb-3 img-preview">
+            <img src="{{ asset('storage/'.$article->file) }}" alt="{{ asset('storage/'.$article->file) }}" class="img-fluid rounded w-100 mb-3 img-preview">
 
             <div class=" mb-3">
                 <label for="file" class="form-label">thumbnail</label>
-                <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror"
-                    onchange="previewImg()" accept=".jpg,.jpeg,.png">
+                <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror" onchange="previewImg()" accept=".jpg,.jpeg,.png">
                 @error('file')<div class="invalid-feedback">{{$message}}</div>@enderror
             </div>
 
