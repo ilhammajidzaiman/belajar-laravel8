@@ -44,40 +44,20 @@
 {{-- offline --}}
 <script src="{{ url('/') }}/assets/js/image-preview.js"></script>
 <script src="{{ url('/') }}/assets/js/offcanvas.js"></script>
-{{-- <script src="{{ url('/') }}/plugin/js/jquery-3.4.1.slim.min.js"></script> --}}
-{{-- <script src="{{ url('/') }}/plugin/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script> --}}
-{{-- <script src="{{ url('/') }}/plugin/summernote-0.8.18-dist/summernote-lite.min.js"></script> --}}
+<script src="{{ url('/') }}/plugin/js/jquery-3.4.1.slim.min.js"></script>
+<script src="{{ url('/') }}/plugin/summernote-0.8.18-dist/summernote-lite.min.js"></script>
+<script src="{{ url('/') }}/assets/js/summernote-config.js"></script>
+<script src="{{ url('/') }}/plugin/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 
 
 {{-- online --}}
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-{{-- <script src="https://getbootstrap.com/docs/5.1/examples/offcanvas-navbar/offcanvas.js"></script> --}}
+<script src="https://getbootstrap.com/docs/5.1/examples/offcanvas-navbar/offcanvas.js"></script> --}}
 
 
-<script>
-    function test()
-    {
-    let content = $('#summernote').text().toLowerCase();
-    $('#summernote').text(content);
-    } 
-    $('#summernote').summernote({
-            placeholder: 'Hello stand alone ui',
-            tabsize: 2,
-            height: 400,
-            toolbar: [
-                ['view', ['undo', 'redo']],
-                ['style', ['style', 'fontname']],
-                ['font', ['bold', 'italic', 'underline', 'color']],
-                ['para', ['ul', 'ol', 'paragraph', 'strikethrough', 'superscript', 'subscript']],
-                ['table', ['table']],
-                ['insert', ['hr', 'link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']],
-                ['clear', ['clear']],
-            ]
-        });
-</script>
+
 
 </body>
 

@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title }}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/images/imz-icon.svg' )}}">
+    {{-- offline --}}
     <link rel="stylesheet" href="{{ url('/')}}/plugin/fontawesome5/css/all.css">
-    {{--
     <link rel="stylesheet" href="{{ url('/')}}/plugin/bootstrap-5.0.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url('/') }}/plugin/summernote-0.8.18-dist/summernote-lite.min.css"> --}}
-
+    <link rel="stylesheet" href="{{ url('/') }}/plugin/summernote-0.8.18-dist/summernote-lite.min.css">
+    <link rel="stylesheet" href="{{ url('/') }}/assets/css/offcanvas.css">
+    {{-- online --}}
+    {{--
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-
-    <link href="https://getbootstrap.com/docs/5.1/examples/offcanvas-navbar/offcanvas.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/5.1/examples/offcanvas-navbar/offcanvas.css"> --}}
 </head>
 
 <body class="pt-5 bg-light">

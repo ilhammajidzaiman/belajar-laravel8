@@ -19,13 +19,12 @@
             <textarea name="content" id="summernote" cols="30" rows="10"
                 class="@error('content') is-invalid @enderror">{{ old('content') }}</textarea>
             @error('content')<div class="invalid-feedback">{{$message}}</div>@enderror
-
         </div>
 
         <div class="col-md-3">
-
             <img src="{{url('assets/articles/default.svg')}}" alt=" default.svg"
                 class="img-fluid rounded w-100 mb-3 img-preview">
+
             <div class=" mb-3">
                 <label for="file" class="form-label">thumbnail</label>
                 <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror"
@@ -33,23 +32,19 @@
                 @error('file')<div class="invalid-feedback">{{$message}}</div>@enderror
             </div>
 
-            <div class="form-floating mb-3">
-                <select class="form-select" id="category" aria-label="Floating label select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                <label for="category">Works with selects</label>
-            </div>
-
-
             <div class="row mb-3">
                 <div class="col">
-                    <p>Kategori</p>
+                    <p>kategori</p>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="kategori2">
-                        <label class="form-check-label" for="kategori2">Default checkbox</label>
+                        <input type="checkbox" name="catregory[]" id="category" value="category"
+                            class="form-check-input">
+                        <label for="category">label kategory</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" name="catregory[]" id="category" value="category"
+                            class="form-check-input">
+                        <label for="category">label kategory</label>
                     </div>
                 </div>
             </div>

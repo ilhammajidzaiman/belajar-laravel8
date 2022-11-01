@@ -5,6 +5,27 @@
     baru
 </a>
 
+<div class="row">
+    <div class="col-md-2">
+        <a class="rounded-pill btn btn-smm btn-secondary text-capitalize mb-3"
+            href="{{ url('/'.$controller.'/create')}}">
+            <i class="fa-fw fas fa-plus"></i>
+            baru
+        </a>
+    </div>
+
+    <div class="col-md-10">
+        <div class="form-control d-inline">
+            <input type="text" name="" id="" class="form-input">
+        </div>
+        <a class="rounded-pill btn btn-smm btn-secondary text-capitalize mb-3 d-inline"
+            href="{{ url('/'.$controller.'/create')}}">
+            <i class="fa-fw fas fa-plus"></i>
+            baru
+        </a>
+    </div>
+</div>
+
 @php
 $message =session('message');
 $alert =session('alert')
