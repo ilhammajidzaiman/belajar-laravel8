@@ -35,19 +35,19 @@
             <div class="row mb-3">
                 <div class="col">
                     <p>kategori</p>
+                    @foreach ($categories as $category)
                     <div class="form-check">
-                        <input type="checkbox" name="catregory[]" id="category" value="category"
-                            class="form-check-input">
-                        <label for="category">label kategory</label>
+                        <input type="checkbox" name="category[]" id="category{{ $category->id }}"
+                            value="{{ $category->id }}" class="form-check-input">
+                        <label for="category{{ $category->id }}">{{ $category->category }}</label>
                     </div>
-
-                    <div class="form-check">
-                        <input type="checkbox" name="catregory[]" id="category" value="category"
-                            class="form-check-input">
-                        <label for="category">label kategory</label>
-                    </div>
+                    @endforeach
+                    @error('category[]')<div class="text-danger">{{$message}}</div>@enderror
                 </div>
             </div>
+
+            {{-- <input type="checkbox" name="catregory[]" id="category{{ $category->id }}" value="{{ $category->id }}"
+                class="form-check-input" @if (in_array({{ $category->id}},('category',[])) ) checked @endif> --}}
 
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input" type="checkbox" id="publish" checked>

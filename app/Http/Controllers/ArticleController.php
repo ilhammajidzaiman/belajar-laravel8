@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
+use App\Models\Posting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -39,7 +41,8 @@ class ArticleController extends Controller
             'administrator.article.create',
             [
                 'controller'        => 'article',
-                'title'             => 'artikel'
+                'title'             => 'artikel',
+                'categories'        => Category::orderBy('category')->get()
             ]
         );
     }
@@ -52,22 +55,24 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        // input
+                // input
         $idUser             = 1;
         $title              = $request->title;
         $slug               = Str::slug($title, '-') . '.html';
         $content            = $request->content;
         $truncated          = Str::limit(strip_tags($content), 200, '...');
+        $category           = $request->category;
         $file               = $request->file('file');
         $folder             = 'articles';
         $default            = 'default.svg';
 
         // validation
-        $validatedData = $request->validate([
-            'title'         => ['required', 'max:250', 'unique:tbl_articles'],
-            'content'       => ['required'],
-            'file'          => ['file', 'image', 'mimes:jpeg,jpg,png,svg', 'max:11024'],
-        ]);
+        // $validatedData = $request->validate([
+        //     'title'         => ['required', 'max:250', 'unique:tbl_articles'],
+        //     'content'       => ['required'],
+        //     'file'          => ['file', 'image', 'mimes:jpeg,jpg,png,svg', 'max:11024'],
+        //     'category'    => ['required'],
+        // ]);
 
         // upload
         if ($file) :
@@ -82,15 +87,35 @@ class ArticleController extends Controller
         endif;
 
         // insert
-        Article::create([
-            'id_user'       => $idUser,
-            'title'         => $title,
-            'slug'          => $slug,
-            'content'       => $content,
-            'truncated'     => $truncated,
-            'file'          => $file,
-        ]);
+        // $data= [
+        //     'id_user'       => $idUser,
+        //     'title'         => $title,
+        //     'slug'          => $slug,
+        //     'content'       => $content,
+        //     'truncated'     => $truncated,
+        //     'file'          => $file,
+        // ];
+        // Article::create($data);
+        // $data2=[];
+        foreach ($category as $key) :
+        $data2[] = 
+            [
+                'id_posting' => $key,
+                'id_category' => $key,
+            ];
+        endforeach;
 
+        // $data2 = [
+        //     ['id_posting' => 'posting1', 'id_ketegori' => 'kategori1'],
+        //     ['id_posting' => 'posting2', 'id_ketegori' => 'kategori2'],
+        // ];
+
+      
+
+// dd($data2);
+
+    Posting::insert($data2);
+        
         // 
         return redirect('/article')->with([
             'message'       => 'data ditambahkan!',

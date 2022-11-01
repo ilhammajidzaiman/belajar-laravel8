@@ -5,25 +5,17 @@
     baru
 </a>
 
-<div class="row">
-    <div class="col-md-2">
-        <a class="rounded-pill btn btn-smm btn-secondary text-capitalize mb-3"
-            href="{{ url('/'.$controller.'/create')}}">
-            <i class="fa-fw fas fa-plus"></i>
-            baru
-        </a>
-    </div>
-
-    <div class="col-md-10">
-        <div class="form-control d-inline">
-            <input type="text" name="" id="" class="form-input">
-        </div>
-        <a class="rounded-pill btn btn-smm btn-secondary text-capitalize mb-3 d-inline"
-            href="{{ url('/'.$controller.'/create')}}">
-            <i class="fa-fw fas fa-plus"></i>
-            baru
-        </a>
-    </div>
+<div class="input-group my-5">
+    <a class="rounded-pill btn btn-outline-secondary text-capitalize" href="{{ url('/'.$controller.'/create')}}">
+        <i class="fa-fw fas fa-plus"></i>
+        baru
+    </a>
+    <input type="text" class="rounded-pill form-control border-secondary mx-3" placeholder="Recipient's username"
+        aria-label="Recipient's username" aria-describedby="button-addon2">
+    <button class="rounded-pill btn btn-outline-secondary" type="button" id="button-addon2">
+        <i class="fa-fw fas fa-search"></i>
+        cari
+    </button>
 </div>
 
 @php
