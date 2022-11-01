@@ -1,20 +1,22 @@
 @extends('administrator.templates.main')
 @section('container')
-<a class="rounded-pill btn btn-sm btn-secondary text-capitalize mb-3" href="{{ url('/'.$controller.'/create')}}">
-    <i class="fa-fw fas fa-plus"></i>
-    baru
-</a>
 
-<div class="input-group my-5">
-    <a class="rounded-pill btn btn-outline-secondary text-capitalize" href="{{ url('/'.$controller.'/create')}}">
-        <i class="fa-fw fas fa-plus"></i>
-        baru
-    </a>
-    <input type="text" class="rounded-pill form-control border-secondary mx-3" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-    <button class="rounded-pill btn btn-outline-secondary" type="button" id="button-addon2">
-        <i class="fa-fw fas fa-search"></i>
-        cari
-    </button>
+<div class="row mb-4">
+    <div class="col">
+        <a class="rounded-pill btn btn-outline-secondary" href="{{ url('/'.$controller.'/create')}}">
+            <i class="fa-fw fas fa-plus"></i>
+            baru
+        </a>
+    </div>
+    <div class="col-8 col-sm-8 col-md-6 col-lg-4">
+        <div class="input-group">
+            <input type="text" name="" id="" placeholder="cari disini" class="form-control rounded-pill border-secondary me-3">
+            <button type="button" class="rounded-pill btn btn-outline-secondary">
+                <i class="fa-fw fas fa-search"></i>
+                cari
+            </button>
+        </div>
+    </div>
 </div>
 
 @php
