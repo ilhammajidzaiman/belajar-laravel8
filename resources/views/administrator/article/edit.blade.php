@@ -45,9 +45,7 @@
                     @foreach ($categories as $category)
                     <div class="form-check">
                         <input type="checkbox" name="category[]" id="category{{ $category->id }}"
-                            value="{{ $category->id }}" class="form-check-input" {{-- {{
-                            old('category',$category->id)==$category->id ?'selected':'' }} --}}
-                        >
+                            value="{{ $category->id }}" class="form-check-input">
                         <label for="category{{ $category->id }}">{{ $category->category }}</label>
                     </div>
                     @endforeach

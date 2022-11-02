@@ -40,18 +40,13 @@
                     @foreach ($categories as $category)
                     <div class="form-check">
                         <input type="checkbox" name="category[]" id="category{{ $category->id }}"
-                            value="{{ $category->id }}" class="form-check-input" {{-- {{
-                            old('category',$category->id)==$category->id ?'selected':'' }} --}}
-                        >
+                            value="{{ $category->id }}" class="form-check-input">
                         <label for="category{{ $category->id }}">{{ $category->category }}</label>
                     </div>
                     @endforeach
                     @error('category[]')<small class="text-danger">{{$message}}</small>@enderror
                 </div>
             </div>
-
-            {{-- <input type="checkbox" name="catregory[]" id="category{{ $category->id }}" value="{{ $category->id }}"
-                class="form-check-input" @if (in_array({{ $category->id}},('category',[])) ) checked @endif> --}}
 
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input" type="checkbox" id="publish" checked>
