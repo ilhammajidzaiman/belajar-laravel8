@@ -151,7 +151,8 @@ class ArticleController extends Controller
             [
                 'controller'    => 'article',
                 'title'         => 'edit artikel',
-                'article'       => $article
+                'article'       => $article,
+                'categories'    => Category::orderBy('category')->get()
             ],
         );
     }
