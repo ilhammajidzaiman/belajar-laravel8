@@ -71,7 +71,7 @@ class ArticleController extends Controller
             'title'         => ['required', 'max:250', 'unique:tbl_articles'],
             'content'       => ['required'],
             'file'          => ['file', 'image', 'mimes:jpeg,jpg,png,svg', 'max:11024'],
-            'category[]'    => ['required'],
+            // 'category[]'    => ['required'],
         ]);
 
         // upload
