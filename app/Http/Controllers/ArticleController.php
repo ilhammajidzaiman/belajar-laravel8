@@ -67,12 +67,12 @@ class ArticleController extends Controller
         $default            = 'default.svg';
 
         // validation
-        // $validatedData = $request->validate([
-        //     'title'         => ['required', 'max:250', 'unique:tbl_articles'],
-        //     'content'       => ['required'],
-        //     'file'          => ['file', 'image', 'mimes:jpeg,jpg,png,svg', 'max:11024'],
-        //     'category'    => ['required'],
-        // ]);
+        $validatedData = $request->validate([
+            'title'         => ['required', 'max:250', 'unique:tbl_articles'],
+            'content'       => ['required'],
+            'file'          => ['file', 'image', 'mimes:jpeg,jpg,png,svg', 'max:11024'],
+            'category[]'    => ['required'],
+        ]);
 
         // upload
         if ($file) :
