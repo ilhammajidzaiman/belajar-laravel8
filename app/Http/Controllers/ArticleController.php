@@ -61,8 +61,8 @@ class ArticleController extends Controller
         $slug               = Str::slug($title, '-') . '.html';
         $content            = $request->content;
         $truncated          = Str::limit(strip_tags($content), 200, '...');
-        $category           = $request->category;
         $file               = $request->file('file');
+        $category           = $request->category;
         $folder             = 'articles';
         $default            = 'default.svg';
 
@@ -113,7 +113,7 @@ class ArticleController extends Controller
         endforeach;
         Posting::insert($data2);
 
-        // 
+        // flashdata
         return redirect('/article')->with([
             'message'       => 'data ditambahkan!',
             'alert'         => 'primary'
@@ -166,6 +166,12 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        // detail
+        $id                 = $article->slug;
+        $oldFile            = $article->file;
+        $oldSlug            = $article->slug;
+        $oldFile            = $article->file;
+
         // input
         $idUser             = 1;
         $title              = $request->title;
@@ -173,52 +179,74 @@ class ArticleController extends Controller
         $content            = $request->content;
         $truncated          = Str::limit(strip_tags($content), 200, '...');
         $file               = $request->file('file');
+        $category           = $request->category;
         $folder             = 'articles';
         $default            = 'default.svg';
 
-        // detail
-        $id                 = $article->slug;
-        $oldFile            = $article->file;
-        $oldSlug            = $article->slug;
-        $oldFile            = $article->file;
-
-        // validation
+        // validation logic
         if ($oldSlug !== $slug) :
             $unique         = "unique:tbl_articles";
         else :
             $unique         = "";
         endif;
 
+        // validation
         $validatedData = $request->validate([
             'title'         => ['required', 'max:250', $unique],
             'content'       => ['required'],
             'file'          => ['file', 'image', 'mimes:jpeg,jpg,png,svg', 'max:11024'],
         ]);
 
-        // upload
+        // upload file
         if ($file) :
-            if ($oldFile !== $folder . '/' . $default)
+            if ($oldFile !== $folder . '/' . $default) :
                 Storage::delete($oldFile);
+            endif;
             $file = $file->store($folder);
-        // 
+        // rename file
         // $name           = $file->hashName();
-        // $date           = date('dmyhis');
+        // $date           = date('YmdHis');
         // $fileName       = $date . '-' . $name;
         // $file           = $file->storeAs($folder, $fileName);
         else :
             $file           = $oldFile;
         endif;
 
-        // Article::create([
+        // collect data
+        $data = [
+            'id_user'       => $idUser,
+            'title'         => $title,
+            'slug'          => $slug,
+            'content'       => $content,
+            'truncated'     => $truncated,
+            'file'          => $file
+        ];
+
+        // update database
         Article::where('slug', $id)
-            ->update([
-                'id_user'       => $idUser,
-                'title'         => $title,
-                'slug'          => $slug,
-                'content'       => $content,
-                'truncated'     => $truncated,
-                'file'          => $file
-            ]);
+            ->update($data);
+
+        // detail
+        // $detail = Article::where('slug', $slug)->get();
+        $detail = Article::where('slug', $slug)->first();
+        $oldId = $detail->id;
+
+        // delete database posting
+        Posting::where('id_posting', $oldId)->delete();
+
+        // collect data
+        $data2 = [];
+        foreach ($category as $key) :
+            $data2[] =
+                [
+                    'id_posting' => $oldId,
+                    'id_category' => $key,
+                ];
+        endforeach;
+
+        // insert category to posting
+        Posting::insert($data2);
+
 
         // flashdata
         return redirect('/article')->with([
@@ -237,14 +265,18 @@ class ArticleController extends Controller
     {
         // detail
         $id                 = $article->id;
-        $oldFile            = $article->file;
+        $file               = $article->file;
 
-        if ($oldFile !== 'article/default.svg') :
-            Storage::delete($oldFile);
+        // delete file
+        if ($file !== 'article/default.svg') :
+            Storage::delete($file);
         endif;
 
+        // delete database
         Article::destroy($id);
+        Posting::where('id_posting', $id)->delete();
 
+        // flashdata
         return redirect('/article')->with([
             'message'       => 'data dihapus!',
             'alert'         => 'danger'
