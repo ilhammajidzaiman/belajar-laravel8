@@ -1,9 +1,23 @@
 @extends('administrator.templates.main')
 @section('container')
-<a class="rounded-pill btn btn-sm btn-secondary text-capitalize mb-3" href="{{ url('/'.$controller.'/create')}}">
-    <i class="fa-fw fas fa-plus"></i>
-    baru
-</a>
+<div class="row mb-4">
+    <div class="col">
+        <a class="rounded-pill btn btn-outline-secondary" href="{{ url('/'.$controller.'/create')}}">
+            <i class="fa-fw fas fa-plus"></i>
+            baru
+        </a>
+    </div>
+    <div class="col-8 col-sm-8 col-md-6 col-lg-4">
+        <div class="input-group">
+            <input type="text" name="" id="" placeholder="cari disini"
+                class="form-control rounded-pill border-secondary me-3">
+            <button type="button" class="rounded-pill btn btn-outline-secondary">
+                <i class="fa-fw fas fa-search"></i>
+                cari
+            </button>
+        </div>
+    </div>
+</div>
 
 @php
 $message =session('message');
@@ -31,9 +45,14 @@ $alert =session('alert')
 
             <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
-                <td>{{$category->category}}</td>
+                <td>
+                    <a class="text-dark text-decoration-none" href="{{ url('/'.$controller.'/'.$category->slug) }}">
+                        {{$category->category}}
+                    </a>
+                </td>
                 <td>
                     <span class="float-end text-capitalize">
+                        rounded-pill btn btn-outline-secondary
                         <a class="badge rounded-pill btn btn-primary"
                             href="{{ url('/'.$controller.'/'.$category->slug) }}">
                             <i class="fa-fw fas fa-eye"></i>

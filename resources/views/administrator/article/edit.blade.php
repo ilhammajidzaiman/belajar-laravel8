@@ -81,7 +81,7 @@
                 <label class="form-check-label" for="publish">Publish</label>
             </div>
 
-            <button type="submit" class="rounded-pill btn btn-sm btn-primary"><i class="fa-fw fas fa-save"></i>
+            <button type="submit" class="rounded-pill btn btn-primary"><i class="fa-fw fas fa-save"></i>
                 simpan</button>
         </div>
     </div>

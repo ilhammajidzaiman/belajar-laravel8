@@ -1,10 +1,13 @@
 @extends('administrator.templates.main')
 @section('container')
-<a class="rounded-pill btn btn-sm btn-secondary text-capitalize mb-3" href="{{ url('/'.$controller)}}">
-    <i class="fa-fw fas fa-arrow-left"></i>
-    kembali
-</a>
-
+<div class="row mb-4">
+    <div class="col">
+        <a class="rounded-pill btn btn-outline-secondary" href="{{ url('/'.$controller)}}">
+            <i class="fa-fw fas fa-arrow-left"></i>
+            kembali
+        </a>
+    </div>
+</div>
 
 <form action="{{ url('/'.$controller.'/'.$category->slug) }}" method="post" class="text-capitalize">
     @method('put')
@@ -17,6 +20,6 @@
         <div class="invalid-feedback">{{$message}}</div>
         @enderror
     </div>
-    <button type="submit" class="rounded-pill btn btn-sm btn-primary"><i class="fa-fw fas fa-save"></i> simpan</button>
+    <button type="submit" class="rounded-pill btn btn-primary"><i class="fa-fw fas fa-save"></i> simpan</button>
 </form>
 @endsection
