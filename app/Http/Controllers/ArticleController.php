@@ -64,7 +64,7 @@ class ArticleController extends Controller
         $file               = $request->file('file');
         $category           = $request->category;
         $folder             = 'articles';
-        $default            = 'default.svg';
+        $default            = 'default-img.svg';
 
         // validation
         $validatedData = $request->validate([
@@ -83,7 +83,7 @@ class ArticleController extends Controller
         // $fileName       = $date . '-' . $name;
         // $file           = $file->storeAs($folder, $fileName);
         else :
-            $file           = $folder . '/' . $default;
+            $file           = $default;
         endif;
 
         // insert
@@ -181,7 +181,7 @@ class ArticleController extends Controller
         $file               = $request->file('file');
         $category           = $request->category;
         $folder             = 'articles';
-        $default            = 'default.svg';
+        $default            = 'default-img.svg';
 
         // validation logic
         if ($oldSlug !== $slug) :
@@ -268,7 +268,7 @@ class ArticleController extends Controller
         $file               = $article->file;
 
         // delete file
-        if ($file !== 'article/default.svg') :
+        if ($file !== 'article/default-img.svg') :
             Storage::delete($file);
         endif;
 

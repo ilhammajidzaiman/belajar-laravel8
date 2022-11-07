@@ -24,7 +24,7 @@
         </div>
 
         <div class="col-md-3">
-            <img src="{{url('assets/articles/default.svg')}}" alt=" default.svg"
+            <img src="{{url('assets/images/default-img.svg')}}" alt=" default.svg"
                 class="img-fluid rounded w-100 mb-3 img-preview">
 
             <div class=" mb-3">

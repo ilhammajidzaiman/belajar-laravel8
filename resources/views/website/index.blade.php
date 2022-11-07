@@ -6,8 +6,19 @@
     <div class="row justify-content-center mb-5">
         <div class="col-md-3">
             <a class="" href="{{ url('/'.$controller.'/'.$article->slug) }}">
-                <img src="{{ asset('storage/'.$article->file) }}" alt="{{ asset('storage/'.$article->file) }}"
-                    class="img-fluid rounded w-100">
+                @php
+                $file=$article->file
+                @endphp
+                @if($file=='default-img.svg')
+                @php
+                $url=url('assets/images/'.$file)
+                @endphp
+                @else
+                @php
+                $url=asset('storage/'.$file)
+                @endphp
+                @endif
+                <img src="{{ $url }}" alt="{{ $url }}" class="img-fluid rounded w-100">
             </a>
         </div>
         <div class="col-md-6">

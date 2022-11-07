@@ -11,7 +11,21 @@
 
 <h3>{{ $article->title }}</h3>
 <p>{{ $article->created_at }}</p>
-<img src="{{ asset('storage/'.$article->file) }}" alt="{{ asset('storage/'.$article->file) }}" class="img-fluid">
+
+@php
+$file=$article->file
+@endphp
+@if($file=='default-img.svg')
+@php
+$url=url('assets/images/'.$file)
+@endphp
+@else
+@php
+$url=asset('storage/'.$file)
+@endphp
+@endif
+
+<img src="{{ $url }}" alt="{{ $url }}" class="img-fluid mb-4">
 <p>{{ $article->truncated }}</p>
 <div>{!! $article->content !!}</div>
 
